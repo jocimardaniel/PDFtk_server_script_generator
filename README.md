@@ -4,6 +4,7 @@
     [https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/pdftk_server-2.02-win-setup.exe](https://www.pdflabs.com/docs/pdftk-cli-examples/)
 2.  **Para manipular um arquivo `.pdf` o usuário deverá estar dentro da pasta do arquivo.**
 3.  **Operações:**
+
     3.1. **Dividir o arquivo por páginas (Burst):**
       * **Comando:**
         ```bash
