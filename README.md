@@ -22,6 +22,7 @@
             pdftk ArquivoOrginal_10pag.pdf cat 6-10 output parte_02.pdf
             ```
           * Executar o `.bat` e o arquivo será dividido.
+          
     3.3. **Juntar vários arquivos em um único:**
       * **Comando (combina todos os arquivos .pdf no diretório):**
         ```bash
