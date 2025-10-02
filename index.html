@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Scripts para PDFtk Server</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Gerador de Scripts para PDFtk Server</h1>
+            <p class="warning">
+                <strong>Pré-requisito:</strong> Você precisa ter o <a href="https://www.pdflabs.com/tools/pdftk-server/" target="_blank">PDFtk Server</a> instalado e configurado no PATH do seu sistema.
+                Salve e execute o script gerado na mesma pasta dos seus arquivos PDF.
+            </p>
+        </header>
+
+        <main>
+            <details>
+                <summary>1. Juntar Vários PDFs</summary>
+                <div class="form-section">
+                    <label for="merge-files">Nomes dos arquivos de entrada (um por linha):</label>
+                    <textarea id="merge-files" rows="5" placeholder="arquivo1.pdf&#x0a;arquivo2.pdf&#x0a;arquivo3.pdf"></textarea>
+                    
+                    <label for="merge-output">Nome do arquivo de saída:</label>
+                    <input type="text" id="merge-output" value="resultado_juncao.pdf">
+                    
+                    <button onclick="generateMergeScript()">Gerar Script de Junção</button>
+                </div>
+            </details>
+
+            <details>
+                <summary>2. Extrair um Intervalo de Páginas</summary>
+                <div class="form-section">
+                    <label for="extract-input">Nome do arquivo de entrada:</label>
+                    <input type="text" id="extract-input" placeholder="documento_completo.pdf">
+                    
+                    <label for="extract-range">Páginas ou intervalo (ex: 1-5, 8, 10-end):</label>
+                    <input type="text" id="extract-range" placeholder="1-10">
+                    
+                    <label for="extract-output">Nome do arquivo de saída:</label>
+                    <input type="text" id="extract-output" value="extracao.pdf">
+                    
+                    <button onclick="generateExtractScript()">Gerar Script de Extração</button>
+                </div>
+            </details>
+
+            <details>
+                <summary>3. Dividir a Cada 'X' Páginas</summary>
+                <div class="form-section">
+                    <label for="split-chunk-input">Nome do arquivo de entrada:</label>
+                    <input type="text" id="split-chunk-input" placeholder="livro_grande.pdf">
+
+                    <label for="split-chunk-size">Número de páginas por arquivo:</label>
+                    <input type="number" id="split-chunk-size" value="10" min="1">
+                    
+                    <label for="split-chunk-prefix">Prefixo dos arquivos de saída (ex: parte_):</label>
+                    <input type="text" id="split-chunk-prefix" value="parte_">
+                    
+                    <label for="total-pages">Número total de páginas do PDF de entrada:</label>
+                    <input type="number" id="total-pages" placeholder="Ex: 150" min="1">
+                    
+                    <button onclick="generateChunkSplitScript()">Gerar Script de Divisão</button>
+                </div>
+            </details>
+
+            <details>
+                <summary>4. Dividir em Páginas Únicas (Burst)</summary>
+                <div class="form-section">
+                    <label for="burst-input">Nome do arquivo de entrada:</label>
+                    <input type="text" id="burst-input" placeholder="apresentacao.pdf">
+                    
+                    <label for="burst-prefix">Prefixo dos arquivos de saída (ex: pagina_):</label>
+                    <input type="text" id="burst-prefix" value="pagina_">
+                    
+                    <button onclick="generateBurstScript()">Gerar Script de Burst</button>
+                </div>
+            </details>
+
+            <details>
+                <summary>5. Rotacionar Páginas</summary>
+                <div class="form-section">
+                    <label for="rotate-input">Nome do arquivo de entrada:</label>
+                    <input type="text" id="rotate-input" placeholder="documento_escaneado.pdf">
+                    
+                    <label for="rotate-range">Páginas ou intervalo a rotacionar:</label>
+                    <input type="text" id="rotate-range" placeholder="1-end">
+                    
+                    <label for="rotate-direction">Direção da rotação:</label>
+                    <select id="rotate-direction">
+                        <option value="right">90° (Direita)</option>
+                        <option value="left">270° (Esquerda)</option>
+                        <option value="down">180° (Para baixo)</option>
+                    </select>
+
+                    <label for="rotate-output">Nome do arquivo de saída:</label>
+                    <input type="text" id="rotate-output" value="documento_rotacionado.pdf">
+                    
+                    <button onclick="generateRotateScript()">Gerar Script de Rotação</button>
+                </div>
+            </details>
+
+            <div id="output-area" class="hidden">
+                <h2>Script Gerado (.bat)</h2>
+                <pre><code id="script-output"></code></pre>
+                <div class="output-buttons">
+                    <button id="copy-button">Copiar para Área de Transferência</button>
+                    <button id="download-button">Fazer Download do Script</button>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
